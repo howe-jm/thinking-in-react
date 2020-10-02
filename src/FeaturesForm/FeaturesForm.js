@@ -1,10 +1,7 @@
 import React from 'react';
 import slugify from 'slugify';
+import USCurrencyFormat from '../USCurrencyFormat';
 
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-});
 export default function Features(props) {
   return Object.keys(props.features).map((feature, idx) => {
     const featureHash = feature + '-' + idx;

@@ -1,9 +1,5 @@
 import React from 'react';
-
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-});
+import USCurrencyFormat from '../USCurrencyFormat';
 
 export default function Summary(props) {
   return Object.keys(props.selectedState).map((feature, idx) => {
