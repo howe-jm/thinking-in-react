@@ -6,6 +6,7 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
   currency: 'USD',
 });
 export default function Features(props) {
+  console.log(props);
   return Object.keys(props.features).map((feature, idx) => {
     const featureHash = feature + '-' + idx;
     const options = props.features[feature].map((item) => {

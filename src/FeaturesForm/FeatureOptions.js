@@ -1,4 +1,10 @@
+import React from 'react';
 import slugify from 'slugify';
+
+const USCurrencyFormat = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
 
 export default function options(props) {
   return props.features[feature].map((item) => {

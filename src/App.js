@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import STORE from './STORE';
 import Header from './Header/Header';
 import Features from './FeaturesForm/Features';
-
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-});
+import Summary from './Cart/Summary';
+import Total from './Cart/Total';
 
 class App extends Component {
   state = {
     selected: {
-      Processor: STORE.FEATURES.Processor[0],
-      'Operating System': STORE.FEATURES['Operating System'][0],
-      'Video Card': STORE.FEATURES['Video Card'][0],
-      Display: STORE.FEATURES.Display[0],
+      Processor: this.props.features.Processor[0],
+      'Operating System': this.props.features['Operating System'][0],
+      'Video Card': this.props.features['Video Card'][0],
+      Display: this.props.features.Display[0],
     },
   };
 
@@ -28,21 +24,6 @@ class App extends Component {
   };
 
   render() {
-    const summary = Object.keys(this.state.selected).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const selectedOption = this.state.selected[feature];
-
-      return (
-        <div className='summary__option' key={featureHash}>
-          <div className='summary__option__label'>{feature} </div>
-          <div className='summary__option__value'>{selectedOption.name}</div>
-          <div className='summary__option__cost'>{USCurrencyFormat.format(selectedOption.cost)}</div>
-        </div>
-      );
-    });
-
-    const total = Object.keys(this.state.selected).reduce((acc, curr) => acc + this.state.selected[curr].cost, 0);
-
     return (
       <div className='App'>
         <Header />
@@ -53,10 +34,12 @@ class App extends Component {
           </form>
           <section className='main__summary'>
             <h2>Your cart</h2>
-            {summary}
+            <Summary selectedState={this.state.selected} />
             <div className='summary__total'>
               <div className='summary__total__label'>Total</div>
-              <div className='summary__total__value'>{USCurrencyFormat.format(total)}</div>
+              <div className='summary__total__value'>
+                <Total selectedState={this.state.selected} />
+              </div>
             </div>
           </section>
         </main>
