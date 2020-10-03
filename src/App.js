@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './Header/Header';
-import Feature from './FeaturesForm/Feature';
+import FeaturesForm from './FeaturesForm/FeaturesForm';
+import Features from './FeaturesForm/Features';
 import Cart from './Cart/Cart';
+import Summary from './Cart/Summary';
+import Total from './Cart/Total';
 
 class App extends Component {
   state = {
@@ -27,10 +30,13 @@ class App extends Component {
       <div className='App'>
         <Header />
         <main>
-          <form className='main__form'>
-            <Feature updateFeats={this.updateFeature} selectedState={this.state.selected} features={this.props.features} />
-          </form>
-          <Cart selectedState={this.state.selected} />
+          <FeaturesForm>
+            <Features updateFeats={this.updateFeature} selectedState={this.state.selected} features={this.props.features} />
+          </FeaturesForm>
+          <Cart>
+            <Summary selectedState={this.state.selected} />
+            <Total selectedState={this.state.selected} />
+          </Cart>
         </main>
       </div>
     );
