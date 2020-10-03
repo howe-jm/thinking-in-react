@@ -41,6 +41,4 @@ const FEATURES = {
   ],
 };
 
-export default {
-  FEATURES,
-};
+export default FEATURES;
